@@ -31,4 +31,4 @@
    gem 'pry-rails'
  end
 
- gem 'boostrap-sass'
+ gem 'bootstrap-sass'
