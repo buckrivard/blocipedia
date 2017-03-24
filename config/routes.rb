@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'wikis/index'
+
+  get 'wikis/show'
+
+  get 'wikis/new'
+
+  get 'wikis/create'
+
+  get 'wikis/edit'
+
+  get 'wikis/update'
+
+  get 'wikis/destroy'
+
   devise_for :users
 
   root to: 'home#index'
