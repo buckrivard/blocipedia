@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h1>Blocipedia</h1>
+      </div>
+      <div class="col-md-9">
+        <div class="user-nav pull-right">
+          <%= link_to 'Sign up', new_user_registration_path %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
+    </div>
 
-<%= yield %>
-
+  <div class="row">
+    <div class="col-md-4">
+      <% if user_signed_in? %>
+        <h1>My wikis</h1>
+        <%= render @wikis %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <%= yield %>
+    </div>
+  </div>
+  </div>
 </body>
 </html>
