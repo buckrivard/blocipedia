@@ -1,7 +1,7 @@
  source 'https://rubygems.org'
  
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
- gem 'rails', '4.2.7'
+ gem 'rails', '4.2.8'
  gem 'devise'
  
  group :production do
@@ -18,16 +18,17 @@
  gem 'coffee-rails', '~> 4.1.0'
  gem 'jquery-rails'
  gem 'turbolinks'
- gem 'bootstrap'
  gem 'figaro'
 
  group :development, :test do
    gem 'byebug'
    gem 'web-console', '~> 2.0'
    gem 'spring'
-   gem 'rspec-rails'
+   gem 'rspec-rails', '~> 3.5'
    gem 'shoulda'
    gem 'faker'
    gem 'factory_girl_rails'
    gem 'pry-rails'
  end
+
+ gem 'bootstrap-sass'
