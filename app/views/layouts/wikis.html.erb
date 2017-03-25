@@ -40,7 +40,9 @@
  			<% end %>
 		</div>
 		<div class="row">
- 			<div class="col-md-9 col-md-offset-1">
+ 			<div class="col-md-9 col-md-offset-2 pull-left">
+ 				<h1>Wikis</h1>
+ 				<%= render partial: "wiki", collection: @wikis %>
  		 		<%= yield %>
  			</div>
  		</div>
