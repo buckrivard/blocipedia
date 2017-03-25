@@ -5,10 +5,12 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    @wikis = Wiki.all
   end
 
   def new
     @wiki = Wiki.new
+    @wikis = Wiki.all
   end
 
   def create
@@ -28,6 +30,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @wikis = Wiki.all
   end
 
   def update
