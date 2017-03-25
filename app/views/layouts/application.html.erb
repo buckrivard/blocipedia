@@ -7,11 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="md-col-3">
 				<ul class="nav nav-tabs">
 					<li><%= link_to "Blocipedia", root_path %></li>
+					<li><%= link_to "Wikis", wikis_path %></li>
+					<li class="pull-right"><%= link_to "New Wiki", new_wiki_path %></li>
 				</ul>
 			</div>
 			<div class="col-md-5 pull-right">
@@ -24,9 +26,23 @@
 		   		<%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
 	 			<% end %>
 			</div>
-			
 		</div>
-		
+		<div class="row">
+			<div class="container">
+				<% if flash[:notice] %>
+				 	<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:notice] %>
+				 	</div>
+				<% elsif flash[:alert] %>
+					<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:alert] %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+
 
  		<%= yield %>
 	</div>

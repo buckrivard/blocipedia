@@ -1,2 +1,12 @@
-<h1>Wikis#index</h1>
-<p>Find me in app/views/wikis/index.html.erb</p>
+<div class="col-md-3">
+	<h1>Wikis
+	<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary' %>
+	</h1>
+	<% @wikis.each do |wiki| %>
+	<ul>
+		<li>
+		<%= link_to wiki.title, wiki %>
+		</li>
+	</ul>
+	<% end %>
+</div>
