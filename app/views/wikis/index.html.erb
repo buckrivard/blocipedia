@@ -1,12 +1,7 @@
-<div class="col-md-3">
-	<h1>Wikis
-	<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary' %>
-	</h1>
+<h1>Wikis</h1>
+<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary' %>
 	<% @wikis.each do |wiki| %>
-	<ul>
-		<li>
+		<%= div_for(wiki) do %>
 		<%= link_to wiki.title, wiki %>
-		</li>
-	</ul>
 	<% end %>
-</div>
+<% end %>
