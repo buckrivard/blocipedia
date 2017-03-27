@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    user.present?
+    false
   end
 
   def new?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    user.admin?
   end
 
   def scope
