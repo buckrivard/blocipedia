@@ -1,6 +1,6 @@
 <div class="container">
-	<h1>Edit <%= @wiki.title %> </h1>
-	<div class="col-md-11">
+	<h2>Edit <%= @wiki.title %> </h2>
+	<div class="col-md-9 no-padding-left">
 		<%= form_for @wiki do |f| %>
 			<div class="form-group">
 				<%= f.label :title %>
@@ -15,4 +15,5 @@
 			</div>
 		<% end %>
 	</div>
+
 </div>

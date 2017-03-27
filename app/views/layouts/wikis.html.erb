@@ -41,11 +41,15 @@
 		</div>
 		
 		<div class="row">
- 			<div class="col-md-3 pull-left">
- 				<h1>Wikis
- 				<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary new-wiki' %>
- 				</h1>
- 				<%= render partial: "wiki", collection: @wikis %>
+ 			<div class="col-md-3 pull-left no-padding-right">
+	 			<div>
+	 				<h2>Wikis
+	 				<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary new-wiki' %>
+	 				</h2>
+	 			</div>
+	 			<div class="wikis-list">
+	 				<%= render partial: "wiki", collection: @wikis %>	 				
+	 			</div>
  			</div>
  			<div class="col-md-9">
  		 		<%= yield %>
