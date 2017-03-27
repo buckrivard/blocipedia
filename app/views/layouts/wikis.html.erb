@@ -17,8 +17,8 @@
 			</div>
 			<div class="col-md-4 pull-right">
 				<% if user_signed_in? %>
-					<div class="margin">Signed in as: <strong class="margin"><%= current_user.email %></strong> | 
-	   			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link margin' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+					<div class="margin">Signed in as:  <strong class="margin"><%= current_user.email %></strong> | 
+	   			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link margin' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link margin'  %>
 	   			</div>
 				<% else %>
 		   		<%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
@@ -40,14 +40,16 @@
  			<% end %>
 		</div>
 		<div class="row">
- 			<div class="col-md-9 col-md-offset-1">
+ 			<div class="col-md-2 pull-left">
+ 				<h1>Wikis
+ 				<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary new-wiki' %>
+ 				</h1>
+ 				<%= render partial: "wiki", collection: @wikis %>
+ 			</div>
+ 			<div class="col-md-9">
  		 		<%= yield %>
  			</div>
  		</div>
  	</div>
-
-
-
-
 </body>
 </html>
