@@ -11,6 +11,14 @@
 }
 
 .wikis-list {
-	max-height: 650px;
+	max-height: 600px;
 	overflow-y: auto;
+}
+
+.scrollable {
+	overflow-y: auto;
+}
+
+.full-height {
+	max-height: 100vh;
 }
