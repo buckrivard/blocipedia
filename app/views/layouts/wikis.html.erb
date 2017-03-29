@@ -12,7 +12,6 @@
 			<div>
 				<ul class="nav nav-tabs">
 					<li><%= link_to "Blocipedia", root_path %></li>
-					<li><%= link_to "Wikis", wikis_path %></li>
 				</ul>
 			</div>
 			<div class="pull-right">
@@ -41,15 +40,15 @@
 		</div>
 		
 		<div class="row">
- 			<div class="col-md-3 pull-left no-padding-right">
-	 			<div>
+ 			<div class="col-md-3 pull-left no-padding-right full-height">
+				<div>
 	 				<h2>Wikis
 	 				<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary new-wiki' %>
 	 				</h2>
-	 			</div>
-	 			<div class="wikis-list">
-	 				<%= render partial: "wiki", collection: @wikis %>	 				
-	 			</div>
+ 				</div>
+ 				<div class="wikis-list">
+ 					<%= render partial: "wiki", collection: @wikis %>	 				
+ 				</div>
  			</div>
  			<div class="col-md-9">
  		 		<%= yield %>

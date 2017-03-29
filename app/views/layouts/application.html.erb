@@ -7,15 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<ul class="nav nav-tabs">
-					<li><%= link_to "Blocipedia", root_path %></li>
-					<li><%= link_to "Wikis", wikis_path %></li>
-				</ul>
-			</div>
-			<div class="col-md-4 pull-right">
+			<ul class="nav nav-tabs">
+				<li><%= link_to "Blocipedia", root_path %></li>
+				<li><%= link_to "Wikis", wikis_path %></li>
+			</ul>
+			<div class="pull-right">
 				<% if user_signed_in? %>
 					<div class="margin">Signed in as: <strong class="margin"><%= current_user.email %></strong> | 
 	   			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link margin' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
@@ -40,14 +38,10 @@
  			<% end %>
 		</div>
 		<div class="row">
- 			<div class="col-md-9 col-md-offset-1">
+ 			<div class="col-md-12">
  		 		<%= yield %>
  			</div>
  		</div>
  	</div>
-
-
-
-
 </body>
 </html>

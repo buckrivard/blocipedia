@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  enum role: [:member, :admin]
+  enum role: [:member, :premium, :admin]
 
   after_initialize { self.role ||= :member}
 

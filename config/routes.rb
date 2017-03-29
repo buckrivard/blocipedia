@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+
   resources :wikis
 
-  devise_for :users
+  resources :charges, only: [:create, :destroy]
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  authenticated :user do
+    root 'wikis#index', as: :authenticated_root
+  end
 
   root to: 'home#index'
   
