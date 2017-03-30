@@ -18,6 +18,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.update(post_params)
     @wiki.user_id = current_user.id
+    @wiki.private ||= false
 
     if @wiki.save
       flash[:notice] = "Wiki saved."
