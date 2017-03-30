@@ -12,6 +12,10 @@
 			</div>
 			<% if current_user.admin? || current_user.premium? %>
 				<div class="form-group">
+					<%= f.label :collaborators %>
+					<%=f.text_field :collaborators, class: 'form-control' %>
+				</div>
+				<div class="form-group">
 					<%= f.label :private, class: 'checkbox' do %>
 						<%= f.check_box :private %> Private wiki
 					<% end %>

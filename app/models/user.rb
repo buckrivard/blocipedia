@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
 
   after_initialize { self.role ||= :member}
 
+  has_many :wikis, through: :collaborators
+
 end
