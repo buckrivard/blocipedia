@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
   	flash[:alert] = "You must be an admin to access this feature."
-  	redirect_to(request.referer)
+  	redirect_to(root_path)
   end
   
 end

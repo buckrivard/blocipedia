@@ -47,7 +47,7 @@
  
 <% elsif current_user.premium?%>
   <h5> <%= current_user.role.capitalize %> </h5>
-  <%= link_to 'Downgrade!', charge_path(0), method: :delete %>
+  <%= link_to 'Downgrade!', charge_path(0), method: :delete, data: {confirm: "Are you sure you want to downgrade? All your private wikis will be turned public."} %>
 <% else %>
   <p>You're an admin. You're the sheriff in town.</p>  
 <% end %>

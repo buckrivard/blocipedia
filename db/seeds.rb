@@ -21,7 +21,8 @@ users = User.all
  	wiki = Wiki.create(
  		title:  "#{Faker::Hacker.noun.upcase}!",
  		body:   Faker::Hacker.say_something_smart,
-     user: users.sample
+    user: users.sample,
+    private: Faker::Boolean.boolean
  	)
 	wiki.update(created_at: some_time_ago)
 end

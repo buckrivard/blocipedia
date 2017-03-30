@@ -25,8 +25,9 @@ class ChargesController < ApplicationController
   end
 
   def destroy
-  	flash[:notice] = "Tu n'es plus premium! Au revoir, privilèges!"
+  	flash[:notice] = "Tu n'es plus premium! Au revoir, la vie privée!"
   	current_user.member!
+    Wiki.where(user_id: current_user.id).each { |w| w.update(private: false) }
   	redirect_to wikis_path
   end
 end
