@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    true
   end
 
   def new?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user.admin? || record.user_id == user.id
   end
 
   def scope
@@ -47,7 +47,11 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope
+      if user.admin? || user.premium?
+        @scope.all
+      else
+        @scope.where(private: false)
+      end
     end
   end
 end

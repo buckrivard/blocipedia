@@ -10,6 +10,13 @@
 				<%= f.label :body %>
 				<%= f.text_area :body, rows: 20, class: 'form-control' %>
 			</div>
+			<% if current_user.admin? || current_user.premium? %>
+				<div class="form-group">
+					<%= f.label :private, class: 'checkbox' do %>
+						<%= f.check_box :private %> Private wiki
+					<% end %>
+				</div>
+			<% end %> 
 			<div class="form-group">
 				<%= f.submit "Save", class: 'btn btn-succses' %>
 			</div>

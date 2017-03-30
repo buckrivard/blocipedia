@@ -1,1 +1,5 @@
-<p><%= link_to wiki.title, wiki %></p>
+<% if current_user.admin? || current_user.premium? %>
+	<p><%= link_to wiki.title, wiki %></p>
+<% else %>
+	<p><%= link_to wiki.title, wiki unless wiki.private? %></p>
+<% end %>

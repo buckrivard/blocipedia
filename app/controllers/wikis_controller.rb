@@ -6,6 +6,7 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     @wikis = Wiki.all
+    authorize @wiki
   end
 
   def new
@@ -15,9 +16,9 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    @wiki.update(post_params)
+    @wiki.user_id = current_user.id
+    @wiki.private ||= false
 
     if @wiki.save
       flash[:notice] = "Wiki saved."
@@ -36,9 +37,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    @wiki.update(post_params)
 
     if @wiki.save
       flash[:notice] = "Wiki updated."
@@ -61,5 +60,11 @@ class WikisController < ApplicationController
       flash.now[:alert] = "An error occurred while deleting this topic. Maybe God doesn't want it gone?"
       render :show
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end
