@@ -34,3 +34,4 @@
  gem 'bootstrap-sass'
  gem 'pundit'
  gem 'stripe'
+ gem 'redcarpet', '~> 3.0'
