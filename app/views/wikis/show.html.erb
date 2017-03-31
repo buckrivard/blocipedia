@@ -9,3 +9,10 @@
 <div>
 	<%= @wiki.body %>
 </div>
+
+<% @users.each do |user| %>
+  <div>
+    <h3><%= user.email %></h3>
+    <%= link_to 'Add collaborator', collaborators_path(user_id: user.id, wiki_id: @wiki.id), class: 'btn btn-success', method: :post %>
+  </div>
+<% end %>

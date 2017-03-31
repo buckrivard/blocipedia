@@ -6,6 +6,7 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     @wikis = Wiki.all
+    @users = User.where.not(id: current_user.id)
     authorize @wiki
   end
 
