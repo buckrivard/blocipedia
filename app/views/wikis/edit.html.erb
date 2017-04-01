@@ -1,30 +1,38 @@
-<div class="container">
-	<h2>Edit <%= @wiki.title %> </h2>
-	<div class="col-md-9 no-padding-left">
-		<%= form_for @wiki do |f| %>
+<h2>Edit <%= @wiki.title %> </h2>
+<div class="col-md-12 no-padding-left">
+	<%= form_for @wiki do |f| %>
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :body %>
+			<%= f.text_area :body, rows: 20, class: 'form-control' %>
+		</div>
+		<% if current_user.admin? || current_user.premium? %>
 			<div class="form-group">
-				<%= f.label :title %>
-				<%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+				<%= f.label :collaborators %>
+				<%=f.text_field :collaborators, class: 'form-control' %>
 			</div>
 			<div class="form-group">
-				<%= f.label :body %>
-				<%= f.text_area :body, rows: 20, class: 'form-control' %>
+				<%= f.label :private do %>
+					<%= f.check_box :private %> Private wiki
+				<% end %>
 			</div>
-			<% if current_user.admin? || current_user.premium? %>
-				<div class="form-group">
-					<%= f.label :collaborators %>
-					<%=f.text_field :collaborators, class: 'form-control' %>
-				</div>
-				<div class="form-group">
-					<%= f.label :private, class: 'checkbox' do %>
-						<%= f.check_box :private %> Private wiki
-					<% end %>
-				</div>
-			<% end %>               
-			<div class="form-group">
-				<%= f.submit "Save", class: 'btn btn-succses' %>
-			</div>
-		<% end %>
-	</div>
-
+		<% end %>               
+		<div class="form-group">
+			<%= f.submit "Save", class: 'btn btn-succses' %>
+		</div>
+	<% end %>
 </div>
+<% @users.each do |user| %>
+<div>
+	<h3><%= "#{user.email} - #{user.id}" %></h3>
+	<% if @collabs.find_by(user_id: user.id) %>
+		<%= link_to 'Remove Collaborator', collaborator_path(user_id: user.id, wiki_id: @wiki.id), class: 'btn btn-danger', method: :delete %>
+	<% else %>
+		<%= link_to 'Add Collaborator', collaborators_path(user_id: user.id, wiki_id: @wiki.id), class: 'btn btn-success', method: :post %>
+	<% end %>
+</div>
+<% end %>
+

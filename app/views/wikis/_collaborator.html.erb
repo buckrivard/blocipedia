@@ -1,15 +1,3 @@
-<h1>
-	<%= @wiki.title %>
-	<small>
-		Originally created by <%= @wiki.user_id %>
-	</small>
-	<span class="pull-right"><%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: "You sure 'bout this, hoss?"} %></span>
-	<span class="pull-right margin"><%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %></span>
-</h1>
-<div>
-	<%= markdown(@wiki.body) %>
-</div>
-
 <% @users.each do |user| %>
 	<div>
 		<h3><%= "#{user.email} - #{user.id}" %></h3>

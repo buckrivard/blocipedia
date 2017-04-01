@@ -7,15 +7,21 @@ class ApplicationPolicy
   end
 
   def index?
-    false
-  end
-
-  def show?
     scope
   end
 
+  def show?
+    if user.role == 'admin'
+      true
+    elsif user.role == 'premium'
+      true if record.user_id == user.id || !(record.private?) || record.collaborators.include?(user)
+    else
+      true if !(record.private?) || record.collaborators.include?(user)
+    end
+  end
+
   def create?
-    true
+    user.present?
   end
 
   def new?
@@ -60,12 +66,14 @@ class ApplicationPolicy
       else
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          if !(wiki.private?) || wiki.collaborators.include?(user)
+          if !(wiki.private?) || wiki.collaborators.
             wikis << wiki
           end
         end
       end
       wikis
     end
+    
   end
+
 end
