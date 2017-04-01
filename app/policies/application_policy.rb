@@ -66,7 +66,7 @@ class ApplicationPolicy
       else
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          if !(wiki.private?) || wiki.collaborators.
+          if !(wiki.private?) || wiki.collaborators.include?(user)
             wikis << wiki
           end
         end

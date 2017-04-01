@@ -1,5 +1,5 @@
-User.destroy_all
-Wiki.destroy_all
+# User.destroy_all
+# Wiki.destroy_all
 
 CURRENT_TIME = Time.now
 

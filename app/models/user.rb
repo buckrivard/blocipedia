@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   after_initialize { self.role ||= :member}
 
-  has_many :wikis
-  has_many :collaborators
-  has_many :wiki_collaborations, through: :collaborators, source: :wiki, dependent: :delete_all
+  has_many :wikis, dependent: :destroy
+  has_many :collaborators, dependent: :destroy
+  has_many :wiki_collaborations, through: :collaborators, source: :wiki, dependent: :destroy
 
 end
