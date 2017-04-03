@@ -1,7 +1,7 @@
 <% @users.each do |user| %>
 	<div>
 		<h3><%= "#{user.email} - #{user.id}" %></h3>
-		<% if @collabs.find_by(user_id: user.id) %>
+		<% if @wiki.users.include?(user) %>
 			<%= link_to 'Remove Collaborator', collaborator_path(user_id: user.id, wiki_id: @wiki.id), class: 'btn btn-danger', method: :delete %>
 		<% else %>
 			<%= link_to 'Add Collaborator', collaborators_path(user_id: user.id, wiki_id: @wiki.id), class: 'btn btn-success', method: :post %>

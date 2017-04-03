@@ -6,10 +6,11 @@ class CollaboratorsController < ApplicationController
 		c = Collaborator.new(user: user, wiki: @wiki)
 
 		if c.save
-			redirect_to @wiki, notice: "Collaborator #{user.email} added to #{@wiki.title}"
+			flash[:notice] =  "Collaborator #{user.email} added to #{@wiki.title}"
 		else
-			redirect_to @wiki, notice: 'Error adding collaborator. Please try again.'
+			flash[:notice] = 'Error adding collaborator. Please try again.'
 		end
+		redirect_to @wiki
 	end
 
 	def destroy
