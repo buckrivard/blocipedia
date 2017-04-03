@@ -73,6 +73,6 @@ class WikisController < ApplicationController
 
   def collabs
     @users = User.where.not(id: current_user.id)
-    @collabs = Collaborator.all
+    @collabs = @wiki.users
   end
 end
