@@ -35,3 +35,4 @@
  gem 'pundit'
  gem 'stripe'
  gem 'redcarpet', '~> 3.0'
+ gem 'friendly_id', '~> 5.1.0'

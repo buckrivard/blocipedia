@@ -1,24 +1,25 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
-    @wikis = Wiki.all
+    @wiki = Wiki.friendly.find(params[:id])
+    @wikis = policy_scope(Wiki)
+    collabs
     authorize @wiki
   end
 
   def new
     @wiki = Wiki.new
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
+    collabs
   end
 
   def create
     @wiki = Wiki.new
     @wiki.update(post_params)
     @wiki.user_id = current_user.id
-    @wiki.private ||= false
 
     if @wiki.save
       flash[:notice] = "Wiki saved."
@@ -30,13 +31,15 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     @wikis = Wiki.all
+    collabs
+
     authorize @wiki
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     @wiki.update(post_params)
 
     if @wiki.save
@@ -50,7 +53,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki
 
     if @wiki.destroy
@@ -66,5 +69,10 @@ class WikisController < ApplicationController
 
   def post_params
     params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def collabs
+    @users = User.where.not(id: current_user.id)
+    @collabs = @wiki.users
   end
 end

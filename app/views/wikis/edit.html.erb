@@ -1,26 +1,32 @@
-<div class="container">
-	<h2>Edit <%= @wiki.title %> </h2>
-	<div class="col-md-9 no-padding-left">
-		<%= form_for @wiki do |f| %>
-			<div class="form-group">
-				<%= f.label :title %>
-				<%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
-			</div>
-			<div class="form-group">
-				<%= f.label :body %>
-				<%= f.text_area :body, rows: 20, class: 'form-control' %>
-			</div>
+<h2>Edit <%= @wiki.title %> </h2>
+<div class="col-md-12 no-padding-left">
+	<%= form_for @wiki do |f| %>
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :body %>
+			<%= f.text_area :body, rows: 20, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.submit "Save", class: 'btn btn-succses' %>
+		</div>
 			<% if current_user.admin? || current_user.premium? %>
+				<div class="form-group">
+					<%= f.label :collaborators %>
+					<%=f.text_field :collaborators, class: 'form-control' %>
+				</div>
 				<div class="form-group">
 					<%= f.label :private, class: 'checkbox' do %>
 						<%= f.check_box :private %> Private wiki
 					<% end %>
 				</div>
 			<% end %>               
-			<div class="form-group">
-				<%= f.submit "Save", class: 'btn btn-succses' %>
-			</div>
 		<% end %>
 	</div>
-
+	<%= render partial: "collaborator" %>
 </div>
+
+
+
